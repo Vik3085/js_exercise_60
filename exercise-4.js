@@ -34,13 +34,12 @@ const jobs = [
   }
 ];
 
-// core here
 function fetchPersonById(id) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const person = persons.find(item => item.id === id);
       if (person) {
-      resolve(JSON.stringify(person));
+      resolve(person);
       }
       reject('Errore Person id');
     }, 1000);
@@ -53,19 +52,14 @@ function fetchJobById(id) {
     setTimeout(() => {
       const job = jobs.find(item => item.id === id);
       if (job) {
-        resolve(JSON.stringify(job));
+        resolve(job);
       }
       reject('Errore Job id');
     }, 1000);
   });
 }
 
-let personPromise = fetchPersonById(3);
-personPromise
-.then((id) => JSON.parse(id))
-.then((person) => console.log(person));
-
-let jobPromise = fetchJobById(3);
-jobPromise
-.then((id) => JSON.parse(id))
-.then((job) => console.log(job));
+Promise.all ([
+  fetchPersonById(1).then((id) => console.log(id)),
+  fetchJobById(1).then((id) => console.log(id)),
+  ])
