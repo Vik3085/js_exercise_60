@@ -60,6 +60,6 @@ function fetchJobById(id) {
 }
 
 Promise.all ([
-  fetchPersonById(1).then((id) => console.log(id)),
-  fetchJobById(1).then((id) => console.log(id)),
-  ])
+  fetchPersonById(1),
+  fetchJobById(1),
+  ]).then(console.log)
